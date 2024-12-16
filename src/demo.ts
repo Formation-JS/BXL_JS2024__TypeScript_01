@@ -54,3 +54,30 @@ console.warn('Le typage en TS')
     console.log(typeof (nawak));  // Object
 }
 
+
+//! Les énumerations
+// Permet de créer un type de donnée avec des choix limité
+// Le TypeScript permet d'en définir avec le mot clef "enum"
+{
+    // Une enum est un ensemble de constante liée
+    // Par defaut, c'est des valeur numerique incrémenté
+    enum StopLight1 {
+        GREEN, ORANGE , RED
+    };
+
+    // Il est possible de customiser la valeur. Bonne pratique : 
+    // - On défini toutes les valeurs
+    // - Utiliser le même type de donnée (number, string, ...)
+    enum StopLight2 {
+        GREEN = 10, ORANGE = 5, WARNING = 5, RED = 1
+    };
+
+    // Utilisation
+    let light1 : StopLight1 = StopLight1.RED;
+    let light2 : StopLight2 = StopLight2.RED;
+    
+    let light3 : StopLight1 = 2;
+    let light4 : number = StopLight2.RED;
+}
+
+
