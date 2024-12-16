@@ -1,0 +1,19 @@
+{
+  "name": "demo-ts-01",
+  "version": "0.1.0",
+  "description": "Démo de l'utilisation de TypeScript sur une page Web",
+  "main": "index.html",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "DigitalCity",
+    "JavaScript",
+    "TypeScript"
+  ],
+  "author": "Aurélien St",
+  "license": "ISC",
+  "devDependencies": {
+    "typescript": "^5.7.2"
+  }
+}
