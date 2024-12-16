@@ -81,3 +81,30 @@ console.warn('Le typage en TS')
 }
 
 
+//! Le type "Objet" (Sans créer de prototype)
+let person1 : { 
+    firstname: string,
+    lastname: string,
+    birthdate?: Date         // Optionnel
+};
+
+person1 = {
+    firstname: 'Della',
+    lastname: 'Duck',
+    birthdate: new Date(1992, 6, 13)
+};
+
+person1 = {
+    firstname: 'Zaza',
+    lastname: 'Vanderquack',
+};
+
+const person2 : { 
+    firstname: string,
+    lastname: string,
+    birthdate?: Date
+} = {
+    firstname: 'Balthazar',
+    lastname: 'Picsou',
+    birthdate: new Date(1967,11, 3)
+};
