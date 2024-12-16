@@ -1,6 +1,6 @@
 console.log('Hello TypeScript !');
 
-function wait(time) {
+function wait(time: number) {
     return new Promise((resolve, reject) => {
         setTimeout(() => {
             resolve(null);
