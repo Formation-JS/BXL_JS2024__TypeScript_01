@@ -38,14 +38,31 @@ Sans configuration :
 - On doit lancer la commande de transcompilation avec le fichier cible
 - Le code JS est basé sur l'ECMAScript 3 (1999) !!!
 
+### Etape 2 : Configurer le language « TypeScript »
+Documentation du tsconfig : https://www.typescriptlang.org/tsconfig/
+```
+# Génération du fichier de config
+npx tsc --init 
 
+# Transcompilation avec la config
+npx tsc             # A la demande
+npx tsc --watch     # En continu
+```
 
+Ajout des commandes de typescript dans la configuration du projet \
+Modifier le fichier package.json pour y ajouter le code suivante : 
 
-
-
-
-
-
+```json
+{
+  {
+    "scripts": {
+      "compile": "tsc",
+      "watch": "tsc --watch",
+      ...
+  },
+  ...
+}
+```
 
 
 
