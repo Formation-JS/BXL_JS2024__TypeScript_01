@@ -108,3 +108,47 @@ const person2 : {
     lastname: 'Picsou',
     birthdate: new Date(1967,11, 3)
 };
+
+
+//! Définition de type
+
+// Nouveau type de donnée pour les "objet" en JS
+type Sandwich = {
+    name: string,
+    description?: string,
+    ingredients: string[],
+    isVege: boolean,
+    isHalal: boolean
+}
+
+const sandwich1 : Sandwich = {
+    name: 'Cordon bleu',
+    ingredients: [
+        'Cordon bleu',
+        'Dallas'
+    ],
+    isVege: false,
+    isHalal: true
+};
+
+const sandwich2 : Sandwich = {
+    name: 'Jambon Fromage',
+    ingredients: [
+        'Jambon',
+        'Fromage',
+        'Mayo'
+    ],
+    isVege: false,
+    isHalal: false
+}
+
+function eatSandwich(s: Sandwich) {
+    console.log(`Je mange un ${s.name}`)
+    console.log('Les ingrés sont : ' + s.ingredients.join(', ') + '!');
+}
+eatSandwich(sandwich2);
+
+
+// Utilisation des types défini pour les éléments du DOM
+const input1: HTMLElement = document.getElementById('test')!;
+const input2 = document.getElementById('test') as HTMLInputElement;
