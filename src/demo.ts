@@ -166,3 +166,99 @@ const input2 = document.getElementById('test') as HTMLInputElement;
     nbs = [9, 9, 1, 2, 3, 4];
     nbs = [-9, 9];
 }
+
+//! Composition de type
+{
+    // L'opérateur "Union"
+    // *******************
+    //? L'opérateur "|" permet de créer un type basé sur une combinaison de type possible
+
+    // - Type nullable
+    type NullableNumber = number | null;
+
+    let nb1: NullableNumber;
+    nb1 = 42;
+    nb1 = null;
+
+    // - Combiné des types
+    type NumberOrString = number | string;
+    let ex: NumberOrString;
+    ex = 42;
+    ex = 'Hello World';
+
+
+    // Type basé sur un template string
+    // ********************************
+    type CountryCode = 'BE' | 'CH' | 'FR' | 'JP';
+    const flagCode1: CountryCode = "BE";
+    const flagCode2: CountryCode = "JP";
+
+    type Account = `${CountryCode}${number}`;
+    const account1: Account = 'BE123456789'
+    const account2: Account = `${flagCode1}987654321`;
+
+
+    // L'opérateur "Intersection"
+    // **************************
+    //? L'opérateur "&" permet de créer un type basé sur une fusion des types
+
+    type Person = {
+        firstname: string,
+        lastname: string,
+        birthdate?: Date
+    };
+
+    type Email = `${string}@${string}`;
+    const testEmail: Email = '@'   // Check uniquement la présence d'un @. 
+    // En vrai, on fera une regex en runtime :p
+
+    type Student = Person & {
+        login: string,
+        email: Email
+    };
+
+    type Prof = Person & {
+        birthdate: Date,
+        email: Email,
+        course: string
+    };
+
+    type Assistant = Student & Prof;
+
+    const st1: Student = {
+        firstname: 'Zaza',
+        lastname: 'Vanderquack',
+        login: 'zaz42',
+        email: 'zaza@dc.be'
+    };
+
+    const prof: Prof = {
+        firstname: 'Della',
+        lastname: 'Duck',
+        birthdate: new Date(1991, 6, 9),
+        email: 'della.duck@dc.be',
+        course: 'JavaScript'
+    };
+
+
+    // Attention a ne pas créer des types "impossible" -> Never
+    type Fruit = {
+        name: string,
+        price: number
+    }
+
+    type Meal = {
+        name: string,
+        code: string,
+        price: string
+    }
+
+    type BadType = Fruit & Meal
+    /*
+    const bad : BadType = {
+        name: 'Test',
+        code: '42A',
+        price: 42 // Impossible :(
+    };
+    */
+}
