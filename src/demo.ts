@@ -62,7 +62,7 @@ console.warn('Le typage en TS')
     // Une enum est un ensemble de constante liée
     // Par defaut, c'est des valeur numerique incrémenté
     enum StopLight1 {
-        GREEN, ORANGE , RED
+        GREEN, ORANGE, RED
     };
 
     // Il est possible de customiser la valeur. Bonne pratique : 
@@ -73,16 +73,17 @@ console.warn('Le typage en TS')
     };
 
     // Utilisation
-    let light1 : StopLight1 = StopLight1.RED;
-    let light2 : StopLight2 = StopLight2.RED;
+    let light1: StopLight1 = StopLight1.RED;
+    let light2: StopLight2 = StopLight2.RED;
     
-    let light3 : StopLight1 = 2;
-    let light4 : number = StopLight2.RED;
+    let light3: StopLight1 = 2;
+    let light4: number = StopLight2.RED;
 }
 
 
 //! Le type "Objet" (Sans créer de prototype)
-let person1 : { 
+{
+    let person1: {
     firstname: string,
     lastname: string,
     birthdate?: Date         // Optionnel
@@ -99,16 +100,16 @@ person1 = {
     lastname: 'Vanderquack',
 };
 
-const person2 : { 
+    const person2: {
     firstname: string,
     lastname: string,
     birthdate?: Date
 } = {
     firstname: 'Balthazar',
     lastname: 'Picsou',
-    birthdate: new Date(1967,11, 3)
+        birthdate: new Date(1967, 11, 3)
 };
-
+}
 
 //! Définition de type
 
@@ -121,7 +122,7 @@ type Sandwich = {
     isHalal: boolean
 }
 
-const sandwich1 : Sandwich = {
+    const sandwich1: Sandwich = {
     name: 'Cordon bleu',
     ingredients: [
         'Cordon bleu',
@@ -131,7 +132,7 @@ const sandwich1 : Sandwich = {
     isHalal: true
 };
 
-const sandwich2 : Sandwich = {
+    const sandwich2: Sandwich = {
     name: 'Jambon Fromage',
     ingredients: [
         'Jambon',
