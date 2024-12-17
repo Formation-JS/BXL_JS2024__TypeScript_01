@@ -1,6 +1,6 @@
 {
   "name": "demo-ts-01",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "description": "Démo de l'utilisation de TypeScript sur une page Web",
   "main": "index.html",
   "scripts": {
