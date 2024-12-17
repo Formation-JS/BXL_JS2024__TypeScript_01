@@ -112,7 +112,7 @@ person1 = {
 }
 
 //! Définition de type
-
+{
 // Nouveau type de donnée pour les "objet" en JS
 type Sandwich = {
     name: string,
@@ -153,3 +153,16 @@ eatSandwich(sandwich2);
 // Utilisation des types défini pour les éléments du DOM
 const input1: HTMLElement = document.getElementById('test')!;
 const input2 = document.getElementById('test') as HTMLInputElement;
+
+
+    // Nouveau type de donnée pour les "tableaux" en JS
+    type StringArray = string[];
+    type NumberArrayMinTwoElement = [number, number, ...number[]];
+
+    let names: StringArray;
+    names = ['Riri', 'Zaza', 'Della'];
+
+    let nbs: NumberArrayMinTwoElement;
+    nbs = [9, 9, 1, 2, 3, 4];
+    nbs = [-9, 9];
+}
