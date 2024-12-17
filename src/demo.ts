@@ -75,7 +75,7 @@ console.warn('Le typage en TS')
     // Utilisation
     let light1: StopLight1 = StopLight1.RED;
     let light2: StopLight2 = StopLight2.RED;
-    
+
     let light3: StopLight1 = 2;
     let light4: number = StopLight2.RED;
 }
@@ -84,75 +84,75 @@ console.warn('Le typage en TS')
 //! Le type "Objet" (Sans créer de prototype)
 {
     let person1: {
-    firstname: string,
-    lastname: string,
-    birthdate?: Date         // Optionnel
-};
+        firstname: string,
+        lastname: string,
+        birthdate?: Date         // Optionnel
+    };
 
-person1 = {
-    firstname: 'Della',
-    lastname: 'Duck',
-    birthdate: new Date(1992, 6, 13)
-};
+    person1 = {
+        firstname: 'Della',
+        lastname: 'Duck',
+        birthdate: new Date(1992, 6, 13)
+    };
 
-person1 = {
-    firstname: 'Zaza',
-    lastname: 'Vanderquack',
-};
+    person1 = {
+        firstname: 'Zaza',
+        lastname: 'Vanderquack',
+    };
 
     const person2: {
-    firstname: string,
-    lastname: string,
-    birthdate?: Date
-} = {
-    firstname: 'Balthazar',
-    lastname: 'Picsou',
+        firstname: string,
+        lastname: string,
+        birthdate?: Date
+    } = {
+        firstname: 'Balthazar',
+        lastname: 'Picsou',
         birthdate: new Date(1967, 11, 3)
-};
+    };
 }
 
 //! Définition de type
 {
-// Nouveau type de donnée pour les "objet" en JS
-type Sandwich = {
-    name: string,
-    description?: string,
-    ingredients: string[],
-    isVege: boolean,
-    isHalal: boolean
-}
+    // Nouveau type de donnée pour les "objet" en JS
+    type Sandwich = {
+        name: string,
+        description?: string,
+        ingredients: string[],
+        isVege: boolean,
+        isHalal: boolean
+    }
 
     const sandwich1: Sandwich = {
-    name: 'Cordon bleu',
-    ingredients: [
-        'Cordon bleu',
-        'Dallas'
-    ],
-    isVege: false,
-    isHalal: true
-};
+        name: 'Cordon bleu',
+        ingredients: [
+            'Cordon bleu',
+            'Dallas'
+        ],
+        isVege: false,
+        isHalal: true
+    };
 
     const sandwich2: Sandwich = {
-    name: 'Jambon Fromage',
-    ingredients: [
-        'Jambon',
-        'Fromage',
-        'Mayo'
-    ],
-    isVege: false,
-    isHalal: false
-}
+        name: 'Jambon Fromage',
+        ingredients: [
+            'Jambon',
+            'Fromage',
+            'Mayo'
+        ],
+        isVege: false,
+        isHalal: false
+    }
 
-function eatSandwich(s: Sandwich) {
-    console.log(`Je mange un ${s.name}`)
-    console.log('Les ingrés sont : ' + s.ingredients.join(', ') + '!');
-}
-eatSandwich(sandwich2);
+    function eatSandwich(s: Sandwich) {
+        console.log(`Je mange un ${s.name}`)
+        console.log('Les ingrés sont : ' + s.ingredients.join(', ') + '!');
+    }
+    eatSandwich(sandwich2);
 
 
-// Utilisation des types défini pour les éléments du DOM
-const input1: HTMLElement = document.getElementById('test')!;
-const input2 = document.getElementById('test') as HTMLInputElement;
+    // Utilisation des types défini pour les éléments du DOM
+    const input1: HTMLElement = document.getElementById('test')!;
+    const input2 = document.getElementById('test') as HTMLInputElement;
 
 
     // Nouveau type de donnée pour les "tableaux" en JS
@@ -261,4 +261,71 @@ const input2 = document.getElementById('test') as HTMLInputElement;
         price: 42 // Impossible :(
     };
     */
+}
+
+
+//! Les méthode "utils" de TypeScript
+//? Ensemble de méthode pour générer des types
+//? https://www.typescriptlang.org/docs/handbook/utility-types.html
+{
+    type Product = {
+        id: number,
+        name: string,
+        desc?: string,
+        price: number,
+        tva: 21 | 12 | 6
+    }
+
+    function getAllProduct(): Product[] {
+        throw new Error('Not implemented');
+    }
+    function getProduct(id: number): Product {
+        throw new Error('Not implemented');
+    }
+
+    // Omettre une ou plusieur propriété du type
+    //? Parametre de la méthode "Omit" : 
+    //? - Le type ciblé
+    //? - L'ensemble de props qu'on souhaite retirer 
+    type ProductData = Omit<Product, 'id'>
+    type ProductNoPriceInfo = Omit<Product, 'price' | 'tva'>
+
+
+    // Selectionner une ou plusieur propriété du type
+    //? Parametre de la méthode "Pick" : 
+    //? - Le type ciblé
+    //? - L'ensemble de props qu'on souhaite obtenir 
+    type ProductInfo = Pick<Product, 'name' | 'desc'>
+
+
+    // Créer une copie du type où les propriétés sont nullable
+    //? Parametre de la méthode "Partial" : 
+    //? - Le type ciblé
+    type ProductNullable = Partial<Product>
+
+
+    // Créer une copie du type où les propriétés sont non-nullable
+    //? Parametre de la méthode "Required" : 
+    //? - Le type ciblé
+    type ProductRequired = Required<Product>
+
+
+    // Créer un type base sur le retour d'une fonction
+    type Exemple1 = ReturnType<typeof getAllProduct>;
+    type Exemple2 = ReturnType<typeof getProduct>;
+
+
+    // Créer un record avec le type et son identifiant
+    // -> Cela génére une combinaison "clef / valeur"
+    //? Parametre de la méthode "Record" : 
+    //? - Le type de la clef
+    //? - Le type valeur
+    type ProductClef = 'KEY01' | 'KEY02' | 'KEY03'
+    type ProductRecord = Record<ProductClef, ProductInfo>
+
+    const record: ProductRecord = {
+        KEY01: { name: 'Chaise', 'desc': 'Chaise rouge' },
+        KEY02: { name: 'Chaise', 'desc': 'Chaise rouge' },
+        KEY03: { name: 'Chaise', 'desc': 'Chaise rouge' }
+    }
 }
